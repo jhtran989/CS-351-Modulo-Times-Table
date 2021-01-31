@@ -1,6 +1,10 @@
+package timesTable;
+
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TableVisualization {
@@ -71,8 +75,25 @@ public class TableVisualization {
         incrementBlue();
 
         Color color = new Color(r, g, b, opacity);
-        Group lines = new Group();
+        Group linesGroup = new Group();
+        List<Point> pointList = Point.fillInPoints(radius, numPoints);
 
+        double currIndex;
+        double nextIndex;
+        for (Point point : pointList) {
+            currIndex = point.getIndex();
+            nextIndex = (currIndex * timesTableNum) % numPoints;
 
+            Point tailPoint = pointList.get(point.getIndex());
+            Point arrowPoint = pointList.get((int) nextIndex);
+
+            Line line = new Line(tailPoint.getX(), tailPoint.getY(),
+                    arrowPoint.getX(), arrowPoint.getY());
+
+            line.setStroke(color);
+            linesGroup.getChildren().add(line);
+        }
+
+        return linesGroup;
     }
 }

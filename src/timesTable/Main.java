@@ -1,3 +1,5 @@
+package timesTable;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -59,7 +61,13 @@ public class Main extends Application {
         delaySlider.setBlockIncrement(0.1);
         delayBox.getChildren().addAll(delayLabel, delaySlider);
 
-        Button jump = new Button("Jump to the following:");
+        Button jumpToParameterSelection = new Button("Jump to Parameter Selection");
+
+        HBox numPointsBox = new HBox(controlSpacing);
+        Label numPointsLabel = new Label("Number of points on Circle: ");
+        double numPoints = 360;
+        Label numPointsValueLabel = new Label(Double.toString(numPoints));
+        numPointsBox.getChildren().addAll(numPointsLabel, numPointsValueLabel);
 
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
 

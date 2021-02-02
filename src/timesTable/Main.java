@@ -44,7 +44,7 @@ public class Main extends Application {
         Button pauseButton = new Button("Pause");
 
         HBox timesTableBox = new HBox(controlSpacing);
-        Label timesTableLabel = new Label("Times Table Number: ");
+        Label timesTableLabel = new Label("Current Times Table Number: ");
         Label timesTableValueLabel = new Label(Double.toString(initialTimesTableNum));
         timesTableBox.getChildren().addAll(timesTableLabel, timesTableValueLabel);
 
@@ -66,8 +66,6 @@ public class Main extends Application {
         delaySlider.setBlockIncrement(0.1);
         delayBox.getChildren().addAll(delayLabel, delaySlider);
 
-        Button jumpButton = new Button("Jump to Parameter Selection");
-
         HBox timesTableNumBox = new HBox(controlSpacing);
         Label timesTableNumLabel = new Label("Times Table Number: ");
         TextField timesTableNumText = new TextField("2");
@@ -77,6 +75,13 @@ public class Main extends Application {
         Label numPointsLabel = new Label("Number of points on Circle: ");
         TextField numPointsText = new TextField("360");
         numPointsBox.getChildren().addAll(numPointsLabel, numPointsText);
+
+        Label jumpLabel = new Label("Jump to Parameter Selection");
+        Button jumpButton = new Button("Jump");
+
+        controls.getChildren().addAll(timesTableBox, stepNumBox, delayBox,
+                timesTableNumBox, numPointsBox, jumpLabel, jumpButton, startButton,
+                pauseButton);
 
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
 

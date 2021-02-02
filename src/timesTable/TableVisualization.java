@@ -53,6 +53,10 @@ public class TableVisualization {
         timesTableNum += stepNum;
     }
 
+    public void setTimesTableNum(double timesTableNum) {
+        this.timesTableNum = timesTableNum;
+    }
+
     private void incrementBlue() {
         if (increment) {
             if (Double.compare(b + incrementValue, 1.0) > 0.0) {

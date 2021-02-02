@@ -6,6 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -19,8 +20,12 @@ public class Main extends Application {
     public static final double WIDTH_CORRECTION = WIDTH / 2;
     public static final double HEIGHT_CORRECTION = HEIGHT / 2;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         primaryStage.setTitle("Modulo Times Table Visualization");
 
         double initialTimesTableNum = 2;
@@ -35,8 +40,8 @@ public class Main extends Application {
         controls.setLayoutX(15);
         controls.setLayoutY(90);
 
-        Button start = new Button("Start");
-        Button pause = new Button("Pause");
+        Button startButton = new Button("Start");
+        Button pauseButton = new Button("Pause");
 
         HBox timesTableBox = new HBox(controlSpacing);
         Label timesTableLabel = new Label("Times Table Number: ");
@@ -61,13 +66,17 @@ public class Main extends Application {
         delaySlider.setBlockIncrement(0.1);
         delayBox.getChildren().addAll(delayLabel, delaySlider);
 
-        Button jumpToParameterSelection = new Button("Jump to Parameter Selection");
+        Button jumpButton = new Button("Jump to Parameter Selection");
+
+        HBox timesTableNumBox = new HBox(controlSpacing);
+        Label timesTableNumLabel = new Label("Times Table Number: ");
+        TextField timesTableNumText = new TextField("2");
+        timesTableNumBox.getChildren().addAll(timesTableNumLabel, timesTableNumText);
 
         HBox numPointsBox = new HBox(controlSpacing);
         Label numPointsLabel = new Label("Number of points on Circle: ");
-        double numPoints = 360;
-        Label numPointsValueLabel = new Label(Double.toString(numPoints));
-        numPointsBox.getChildren().addAll(numPointsLabel, numPointsValueLabel);
+        TextField numPointsText = new TextField("360");
+        numPointsBox.getChildren().addAll(numPointsLabel, numPointsText);
 
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
 
@@ -80,6 +89,18 @@ public class Main extends Application {
         TableVisualization tableVisualization = new TableVisualization(initialTimesTableNum,
                 500);
 
+        TableAnimationTimer tableAnimationTimer = new TableAnimationTimer(delaySlider,
+                numPointsText, root, timesTableValueLabel,
+                tableVisualization, stepNumSlider);
 
+        startButton.setOnAction(event -> tableAnimationTimer.start());
+
+        pauseButton.setOnAction(event -> tableAnimationTimer.stop());
+
+        jumpButton.setOnAction(event -> {
+            tableAnimationTimer.stop();
+            tableVisualization.setTimesTableNum(Double.parseDouble(timesTableNumText.getText()));
+            tableAnimationTimer.run(true);
+        });
     }
 }

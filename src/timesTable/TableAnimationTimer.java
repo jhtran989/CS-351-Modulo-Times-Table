@@ -13,20 +13,20 @@ public class TableAnimationTimer extends AnimationTimer {
     private TextField numPointsText;
 
     private Pane root;
-    private Label timesTableValueLabel;
+    private Label currentTimesTableValueLabel;
     private TableVisualization tableVisualization;
     private Slider stepNumSlider;
 
 
     public TableAnimationTimer(Slider delaySlider, TextField numPointsText, Pane root,
-                               Label timesTableValueLabel, TableVisualization tableVisualization,
+                               Label currentTimesTableValueLabel, TableVisualization tableVisualization,
                                Slider stepNumSlider) {
         currentDuration = 0;
         this.delaySlider = delaySlider;
         this.numPointsText = numPointsText;
 
         this.root = root;
-        this.timesTableValueLabel = timesTableValueLabel;
+        this.currentTimesTableValueLabel = currentTimesTableValueLabel;
         this.tableVisualization = tableVisualization;
         this.stepNumSlider = stepNumSlider;
     }
@@ -38,7 +38,11 @@ public class TableAnimationTimer extends AnimationTimer {
                 Double.parseDouble(numPointsText.getText()));
         root.getChildren().add(linesGroup);
 
-        timesTableValueLabel.setText(Double.toString(tableVisualization.getTimesTableNum()));
+        //FIXME
+        //currentTimesTableValueLabel.setText(Double.toString(tableVisualization.getTimesTableNum()));
+
+        currentTimesTableValueLabel.setText(String.format("%.2f",
+                tableVisualization.getTimesTableNum()));
 
         if (!jump) {
             tableVisualization.incrementTimesTableNum(stepNumSlider.getValue());

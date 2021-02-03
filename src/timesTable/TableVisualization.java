@@ -10,10 +10,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class TableVisualization {
     private final double incrementValue;
 
-    private final double r;
-    private final double g;
+    private double r;
+    private double g;
     private double b;
-    private final double opacity;
+    private double opacity;
 
     private boolean increment;
 
@@ -22,6 +22,7 @@ public class TableVisualization {
 
     public TableVisualization(double timesTableNum, double radius) {
         this.incrementValue = 0.1 * ThreadLocalRandom.current().nextDouble();
+        // to make sure at least 10 different colors are shown during the visualization
 
         this.r = ThreadLocalRandom.current().nextDouble();
         this.g = ThreadLocalRandom.current().nextDouble();
@@ -55,6 +56,13 @@ public class TableVisualization {
 
     public void setTimesTableNum(double timesTableNum) {
         this.timesTableNum = timesTableNum;
+    }
+
+    public void setColors(double r, double g, double b, double opacity) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+        this.opacity = opacity;
     }
 
     private void incrementBlue() {

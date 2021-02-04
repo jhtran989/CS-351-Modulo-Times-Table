@@ -6,11 +6,24 @@ import static java.lang.Math.*;
 
 import static timesTable.Main.*;
 
+/**
+ * John Tran
+ *
+ * The class used to store the coordinates of a given point on the times
+ * table circle (x and y coordinates) and to provide a way to connect two points
+ */
 public class Point {
     private int index;
     private double x;
     private double y;
 
+    /**
+     * Constructor for Point
+     * @param index the index used to find a given point on the times table
+     *              circle (starts at 0 with theta = pi and increases clockwise)
+     * @param x x coordinate
+     * @param y y coordinate
+     */
     public Point(int index, double x, double y) {
         this.index = index;
         this.x = x;
@@ -21,10 +34,6 @@ public class Point {
         return index;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
     public double getX() {
         return x + WIDTH_CORRECTION;
     }
@@ -33,14 +42,13 @@ public class Point {
         return y + HEIGHT_CORRECTION;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
+    /**
+     * Creates a list of Point objects that circles around the times table
+     * circle, given its radius and a specified number of points
+     * @param radius radius of times table circle
+     * @param numPoints specified number of points to be created
+     * @return a list of Point objects
+     */
     public static List<Point> fillInPoints(double radius, double numPoints) {
         List<Point> pointList = new ArrayList<>();
 

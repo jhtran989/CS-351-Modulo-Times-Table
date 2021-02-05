@@ -11,9 +11,13 @@ This project will generate a visualization of the Modulo Times Table where the u
 
 There is only one jar file needed to run the program.
 
-&mdash;
+Command line args &mdash; `java -jar moduloTimesTable.jar`
 
-> Jar files:
+Note: assuming root of project directory
+
+> Java version: 11.0.10   
+> Jar files: `moduloTimesTable.jar`   
+> Note: all `.jar` files will be placed at the root of the project
 
 ### Afternotes
 
